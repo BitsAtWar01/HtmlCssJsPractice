@@ -1,1 +1,0 @@
-alert('This checks if the Js script is correctly connected')
