@@ -12,10 +12,9 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', {root: path.join(__dirname, './files')});
 });
 
-// //Handle Production
-// if(process.env.NODE_ENV === 'production'){
-    
-// }
+//Routes for Projects
+app.use('/netflix-clone', require('./routes/netflixCloneRoutes'));
+app.use('/coffee', require('./routes/coffeeRoutes'));
 
 //Listen
 app.listen(port, ()=> console.log(`Server started on port ${port}`))
