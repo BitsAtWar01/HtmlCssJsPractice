@@ -1,4 +1,45 @@
 * {
-    background-color: red;
-    color: white;
+  box-sizing: border-box;   
+  margin: 0;
+  padding: 0;
+}
+body {
+ font-family: 'Arial';
+ background: #000;
+ color: #999;
+
+}
+ h1, h2, h3, h4 {
+ color: #fff;
+ }
+ 
+ .netflixlogo{
+   position: relative;
+   width: 200px;
+   height: 200px;
+   top: 30px;
+   left: 50px;
+ }
+
+ .backgroundimage{
+  background-image: url("https://store-images.s-microsoft.com/image/apps.55787.9007199266246365.687a10a8-4c4a-4a47-8ec5-a95f70d8852d.12c2c5b7-0d97-4635-9b57-8a35da0f4c79?mode=scale&q=90&h=1080&w=1920");
+  width: 100%;
+  height: 500px;
+ }
+ .signinbutton{
+  background-color: #FF0000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: relative;
+  
+  bottom: 170px;
+  left: 1350px;
+  
 }
