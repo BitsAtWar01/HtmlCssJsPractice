@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 app.use('/netflix-clone', require('./routes/netflixCloneRoutes'));
 app.use('/coffee', require('./routes/coffeeRoutes'));
 app.use('/form', require('./routes/formRoutes'));
+app.use('/tictactoe', require('./routes/tictactoeRoutes'));
 
 //Listen
 app.listen(port, ()=> console.log(`Server started on port ${port}`))

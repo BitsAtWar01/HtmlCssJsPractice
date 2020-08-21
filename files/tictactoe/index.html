@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="/tictactoe/css/styles.css">
+</head>
+<body>
+
+    <div class="container" id="landing-container">
+        <h1>Tic Tac Toe</h1>
+        <button onclick="play(this)">Play</button>
+    </div>
+
+
+    <div class="container" id="playarea-container">
+        <div class="names-banner">
+            <h2>PLAYER 1 : PLAYER 2</h2>
+        </div>
+        <div class="score-banner">
+            <h1><span class="player-1-score">0</span> : <span class="player-1-score">0</span></h1>
+        </div>
+        <div class="play-area">
+            <div id="block_0" class="block occupied">X</div>
+            <div id="block_1" class="block"></div>
+            <div id="block_2" class="block"></div>
+            <div id="block_3" class="block"></div>
+            <div id="block_4" class="block"></div>
+            <div id="block_5" class="block"></div>
+            <div id="block_6" class="block"></div>
+            <div id="block_7" class="block"></div>
+            <div id="block_8" class="block"></div>
+        </div>
+        <div class="winner-banner">
+            <h2 id="winner"></h2>
+        </div>
+        <div class="button-panel">
+            <button onclick="reset_board()">Reset Board</button>
+            <button onclick="landing(this)">Back</button>
+        </div>
+    </div>
+
+
+    <script src="/tictactoe/js/script.js"></script>
+</body>
+</html>
