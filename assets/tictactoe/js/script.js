@@ -7,7 +7,23 @@ var isBoardFull = false;
 const winnerMessage = document.querySelector('#winner');
 const resetButton = document.querySelector('#reset');
 
+var scores = {
+    scoreOne: 0,
+    scoreTwo: 0
+}
+
+const scoreOneDisplay = document.querySelector('#player-1-score');
+const scoreTwoDisplay = document.querySelector('#player-2-score');
+
 const playArea = document.querySelector('.playarea');
+
+//RENDER SCORE
+
+const renderScore = () =>{
+    scoreOneDisplay.innerHTML = scores.scoreOne;
+    scoreTwoDisplay.innerHTML = scores.scoreTwo;
+}
+renderScore();
 
 //CHECK FULL
 const checkBoardFull = () => {
@@ -104,20 +120,25 @@ const checkWin = () => {
     if(result == player1){
         winnerMessage.innerText = 'Player 1 Wins!';
         winnerMessage.classList.add('playerWin');
+        scores.scoreOne++;
     } else if(result == player2){
         winnerMessage.innerText = 'Player 2 Wins!';
         winnerMessage.classList.add('playerWin');
+        scores.scoreTwo++;
     }else if(isBoardFull){
         winnerMessage.innerText = 'It\'s a Draw!';
         winnerMessage.classList.add('draw');
+
     }
+    renderScore();
     winnerMessage.classList.remove('circle');
     winnerMessage.classList.remove('cross');
     if(nextTurn == 'player1') nextTurn = 'player2';
     else if(nextTurn == 'player2') nextTurn = 'player1';
     turn = '';
     resetButton.innerHTML = 'Play Again?';
-    playArea.classList.add('end');
+    if(isBoardFull) playArea.classList.add('draw-bg')
+    else playArea.classList.add('end');
 }
 
 //BUTTON EVENTS HANDLER FUNCTIONS
@@ -131,6 +152,8 @@ const play = el => {
 const landing = el => {
     resetBoard();
     turn = 'player1';
+    scores.scoreTwo = scores.scoreOne = 0;
+    renderScore();
     el.parentElement.parentElement.style.display = 'none'
     const landingContainer = document.querySelector('#landing-container');
     landingContainer.style.display = 'flex';
@@ -144,5 +167,6 @@ const resetBoard = () => {
     resetButton.innerHTML = 'Reset Board';
     turn = nextTurn;
     playArea.classList.remove('end');
+    playArea.classList.remove('draw-bg');
     renderBoard();
 }
