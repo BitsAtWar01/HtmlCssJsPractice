@@ -19,10 +19,10 @@
             <h2>PLAYER 1 : PLAYER 2</h2>
         </div>
         <div class="score-banner">
-            <h1><span class="player-1-score">0</span> : <span class="player-1-score">0</span></h1>
+            <h1><span id="player-1-score">0</span> : <span id="player-2-score">0</span></h1>
         </div>
-        <div class="play-area">
-            <div id="block_0" class="block occupied">X</div>
+        <div class="playarea">
+            <div id="block_0" class="block"></div>
             <div id="block_1" class="block"></div>
             <div id="block_2" class="block"></div>
             <div id="block_3" class="block"></div>
@@ -36,7 +36,7 @@
             <h2 id="winner"></h2>
         </div>
         <div class="button-panel">
-            <button onclick="reset_board()">Reset Board</button>
+            <button id="reset" onclick="resetBoard()">Reset Board</button>
             <button onclick="landing(this)">Back</button>
         </div>
     </div>

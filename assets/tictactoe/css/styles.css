@@ -30,7 +30,7 @@ button {
     color: white;
     border-radius: 1vw;
     background-color: #ffadad;
-    transition: all 0.15s ease-in-out;
+    transition: all 0.2s ease-in-out;
     outline: none;
 }
 
@@ -54,7 +54,7 @@ button:hover {
     border: 3px solid #bbb;
 }
 
-.play-area {
+.playarea {
     margin: 1.5vw 0;
     display: grid;
     width: 30vw;
@@ -82,13 +82,12 @@ button:hover {
 
 .occupied:hover {
     background: #ffadad;
-    color: #fdffb6;
+    color: white;
     text-shadow: 1px 1px 3px gray;
 }
 
 #playarea-container {
     display: none;
-    transition: all 0.15s ease-in-out;
 }
 
 #landing-container {
@@ -109,4 +108,33 @@ button:hover {
 
 #block_2,#block_5,#block_8 {
   border-right: none;
+}
+
+.playerWin {
+    color: #caffbf;
+    text-shadow: 1px 1px 2px rgb(139, 139, 139);
+}
+
+.draw {
+    color: #ffadad;
+    text-shadow: 1px 1px 2px rgb(139, 139, 139);
+}
+
+.cross {
+    color: #9BF6FF;
+    text-shadow: 1px 1px 1px rgb(139, 139, 139);
+}
+
+.circle {
+    color: #FFD6A5;
+    text-shadow: 1px 1px 1px rgb(139, 139, 139);
+}
+
+.end {
+    background-color: #eeeeee;
+    border-radius: 2%;
+}
+
+.green {
+    background-color: #caffbf;
 }
