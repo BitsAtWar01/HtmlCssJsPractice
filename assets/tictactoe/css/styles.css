@@ -170,4 +170,8 @@ button:hover {
     button {
         border-radius: 3vw;
     }
+
+    .circle, .cross, #landing-container h1, button:hover, .block, .occupied:hover, .playerWin, .draw {
+        text-shadow: none;
+    }
   }
