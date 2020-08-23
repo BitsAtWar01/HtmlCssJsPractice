@@ -12,10 +12,11 @@ header, .container {
     align-items: center;
     justify-content: center;
     background: #fffffc; 
-    color: #88b3f8;
+    color: grey;
 }
 
 #landing-container, button {
+    color: #88b3f8;
     font-size: 4vw;
 }
 
@@ -39,7 +40,7 @@ button:hover {
     background-color: #caffbf;
     border-color: #caffbfe8;
     text-shadow: 1px 1px 3px rgb(124, 124, 124);
-  }
+}
 
 .square {
     display: inline-block;
@@ -142,3 +143,31 @@ button:hover {
 .draw-bg {
     background-color: #fdffb6d0;
 }
+
+@media only screen and (max-width: 600px) {
+    .square {
+      height: 30vw;
+      width: 30vw;
+    }
+
+    .block {
+      height: 30vw;
+      width: 30vw;
+      font-size: 30vw;
+    }
+
+    .playarea{
+        height: 90vw;
+        width: 90vw;
+    }
+    #landing-container, button {
+        font-size: 9vw;
+    }
+    #playarea-container h1, #playarea-container h2{
+        font-size: 9vw;
+    }
+
+    button {
+        border-radius: 3vw;
+    }
+  }
