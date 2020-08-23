@@ -161,10 +161,10 @@ button:hover {
         width: 90vw;
     }
     #landing-container, button {
-        font-size: 9vw;
+        font-size: 8vw;
     }
     #playarea-container h1, #playarea-container h2{
-        font-size: 8vw;
+        font-size: 9vw;
     }
 
     button {
