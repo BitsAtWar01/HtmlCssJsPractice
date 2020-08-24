@@ -6,6 +6,46 @@ var nextTurn = 'player1';
 var isBoardFull = false;
 const winnerMessage = document.querySelector('#winner');
 const resetButton = document.querySelector('#reset');
+const playAreaContainer = document.querySelector('#playarea-container');
+const fullscreen = document.querySelectorAll('.fullscreen');
+
+const maximize = () => {
+    if (fullscreen[0].innerText == 'Maximize'){
+        openFullscreen();
+        fullscreen[0].innerText = 'Minimize';
+        fullscreen[1].innerText = 'Minimize';
+    } else if(fullscreen[0].innerText == 'Minimize'){
+        closeFullscreen();
+        fullscreen[0].innerText = 'Maximize';
+        fullscreen[1].innerText = 'Maximize';
+    }
+}
+
+// Open Fullscreen
+function openFullscreen() {
+    if (playAreaContainer.requestFullscreen) {
+        playAreaContainer.requestFullscreen();
+    } else if (playAreaContainer.mozRequestFullScreen) { /* Firefox */
+        playAreaContainer.mozRequestFullScreen();
+    } else if (playAreaContainer.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        playAreaContainer.webkitRequestFullscreen();
+    } else if (playAreaContainer.msRequestFullscreen) { /* IE/Edge */
+        playAreaContainer.msRequestFullscreen();
+    }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+      document.msExitFullscreen();
+    }
+  }
 
 var scores = {
     scoreOne: 0,

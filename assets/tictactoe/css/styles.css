@@ -153,7 +153,13 @@ button:hover {
 
 #reset-score {
     padding: 0.5vw;
-    font-size: large;
+    font-size: x-large;
+    border-radius: 0.5vw;
+}
+
+.fullscreen {
+    padding: 0.5vw;
+    font-size: x-large;
     border-radius: 0.5vw;
 }
 

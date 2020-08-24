@@ -10,6 +10,7 @@
 <body>
 
     <div class="container" id="landing-container">
+        <button class="fullscreen" onclick="maximize()">Maximize</button>
         <h1>Tic Tac Toe</h1>
         <button onclick="play(this)">Play</button>
     </div>
@@ -21,7 +22,10 @@
         </div>
         <div class="score-banner">
             <h1><span id="player-1-score" class="cross"></span> - <span id="player-2-score" class="circle"></span></h1>
-            <button id="reset-score" onclick="resetScore()">Reset Score</button>
+            <div>
+                <button id="reset-score" onclick="resetScore()">Reset Score</button>
+                <button class="fullscreen" onclick="maximize()">Maximize</button>
+            </div>
         </div>
         <div class="playarea">
             <div id="block_0" class="block"></div>
