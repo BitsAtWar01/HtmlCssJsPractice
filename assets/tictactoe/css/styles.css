@@ -163,6 +163,12 @@ button:hover {
     border-radius: 0.5vw;
 }
 
+.maximized {
+    background-color: #fcdba1 ;
+    border-color: #fde3b7 ;
+}
+
+
 @media only screen and (max-width: 600px) {
     .square {
       height: 30vw;

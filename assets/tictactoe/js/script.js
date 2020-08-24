@@ -8,18 +8,78 @@ const winnerMessage = document.querySelector('#winner');
 const resetButton = document.querySelector('#reset');
 const playAreaContainer = document.querySelector('#playarea-container');
 const fullscreen = document.querySelectorAll('.fullscreen');
+var scores = {
+    scoreOne: 0,
+    scoreTwo: 0
+}
 
+const scoreOneDisplay = document.querySelector('#player-1-score');
+const scoreTwoDisplay = document.querySelector('#player-2-score');
+
+const playArea = document.querySelector('.playarea');
+
+
+document.addEventListener('fullscreenchange', exitHandler);
+document.addEventListener('webkitfullscreenchange', exitHandler);
+document.addEventListener('mozfullscreenchange', exitHandler);
+document.addEventListener('MSFullscreenChange', exitHandler);
+
+
+//Play Button
+const play = el => {
+    el.parentElement.style.display = 'none';
+    const playareaContainer = document.querySelector('#playarea-container');
+    playareaContainer.style.display = 'flex';    
+}
+
+//Back Button
+const landing = el => {
+    nextTurn = 'player1';
+    resetBoard();
+    scores.scoreTwo = scores.scoreOne = 0;
+    renderScore();
+    el.parentElement.parentElement.style.display = 'none'
+    const landingContainer = document.querySelector('#landing-container');
+    landingContainer.style.display = 'flex';
+}
+
+//Reset Board Button
+const resetBoard = () => {
+    board = ['','','','','','','','',''];
+    winnerMessage.classList.remove('playerWin');
+    winnerMessage.classList.remove('draw');
+    winnerMessage.innerText = '';
+    resetButton.innerHTML = 'Reset Board';
+    turn = nextTurn;
+    playArea.classList.remove('end');
+    playArea.classList.remove('draw-bg');
+    renderBoard();
+}
+
+
+//Maximize Button
 const maximize = () => {
     if (fullscreen[0].innerText == 'Maximize'){
         openFullscreen();
-        fullscreen[0].innerText = 'Minimize';
-        fullscreen[1].innerText = 'Minimize';
     } else if(fullscreen[0].innerText == 'Minimize'){
         closeFullscreen();
-        fullscreen[0].innerText = 'Maximize';
-        fullscreen[1].innerText = 'Maximize';
     }
 }
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        ///fire your event
+        fullscreen[0].innerText = 'Maximize';
+        fullscreen[1].innerText = 'Maximize';
+        fullscreen[0].classList.remove('maximized');
+        fullscreen[1].classList.remove('maximized');
+    } else {
+        fullscreen[0].innerText = 'Minimize';
+        fullscreen[0].classList.add('maximized');
+        fullscreen[1].innerText = 'Minimize';
+        fullscreen[1].classList.add('maximized');
+    }
+}  
 
 // Open Fullscreen
 function openFullscreen() {
@@ -46,16 +106,6 @@ function closeFullscreen() {
       document.msExitFullscreen();
     }
   }
-
-var scores = {
-    scoreOne: 0,
-    scoreTwo: 0
-}
-
-const scoreOneDisplay = document.querySelector('#player-1-score');
-const scoreTwoDisplay = document.querySelector('#player-2-score');
-
-const playArea = document.querySelector('.playarea');
 
 //RENDER SCORE
 const renderScore = () =>{
@@ -184,34 +234,4 @@ const checkWin = () => {
     resetButton.innerHTML = 'Play Again?';
     if(isBoardFull) playArea.classList.add('draw-bg')
     else playArea.classList.add('end');
-}
-
-//BUTTON EVENTS HANDLER FUNCTIONS
-//Play Button
-const play = el => {
-    el.parentElement.style.display = 'none';
-    const playareaContainer = document.querySelector('#playarea-container');
-    playareaContainer.style.display = 'flex';    
-}
-//Back Button
-const landing = el => {
-    nextTurn = 'player1';
-    resetBoard();
-    scores.scoreTwo = scores.scoreOne = 0;
-    renderScore();
-    el.parentElement.parentElement.style.display = 'none'
-    const landingContainer = document.querySelector('#landing-container');
-    landingContainer.style.display = 'flex';
-}
-//Reset Board Button
-const resetBoard = () => {
-    board = ['','','','','','','','',''];
-    winnerMessage.classList.remove('playerWin');
-    winnerMessage.classList.remove('draw');
-    winnerMessage.innerText = '';
-    resetButton.innerHTML = 'Reset Board';
-    turn = nextTurn;
-    playArea.classList.remove('end');
-    playArea.classList.remove('draw-bg');
-    renderBoard();
 }
