@@ -186,7 +186,7 @@ button:hover {
         font-size: 9vw;
     }
 
-    button, #reset-score {
+    button, #reset-score, .fullscreen {
         border-radius: 3vw;
     }
 
