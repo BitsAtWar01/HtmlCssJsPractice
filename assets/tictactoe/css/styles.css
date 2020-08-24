@@ -144,6 +144,19 @@ button:hover {
     background-color: #fdffb6d0;
 }
 
+.score-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#reset-score {
+    padding: 0.5vw;
+    font-size: large;
+    border-radius: 0.5vw;
+}
+
 @media only screen and (max-width: 600px) {
     .square {
       height: 30vw;

@@ -18,12 +18,18 @@ const scoreTwoDisplay = document.querySelector('#player-2-score');
 const playArea = document.querySelector('.playarea');
 
 //RENDER SCORE
-
 const renderScore = () =>{
     scoreOneDisplay.innerHTML = scores.scoreOne;
     scoreTwoDisplay.innerHTML = scores.scoreTwo;
 }
 renderScore();
+
+//RESET SCORE
+const resetScore = () => {
+    scores.scoreOne = 0;
+    scores.scoreTwo = 0;
+    renderScore();
+}
 
 //CHECK FULL
 const checkBoardFull = () => {
@@ -120,22 +126,21 @@ const checkWin = () => {
     if(result == player1){
         winnerMessage.innerText = 'Player 1 Wins!';
         winnerMessage.classList.add('playerWin');
-        scores.scoreOne++;
+        if(turn != "finish")scores.scoreOne++;
     } else if(result == player2){
         winnerMessage.innerText = 'Player 2 Wins!';
         winnerMessage.classList.add('playerWin');
-        scores.scoreTwo++;
+        if(turn != "finish") scores.scoreTwo++;
     }else if(isBoardFull){
         winnerMessage.innerText = 'It\'s a Draw!';
         winnerMessage.classList.add('draw');
-
     }
     renderScore();
     winnerMessage.classList.remove('circle');
     winnerMessage.classList.remove('cross');
     if(nextTurn == 'player1') nextTurn = 'player2';
     else if(nextTurn == 'player2') nextTurn = 'player1';
-    turn = '';
+    turn = 'finish';
     resetButton.innerHTML = 'Play Again?';
     if(isBoardFull) playArea.classList.add('draw-bg')
     else playArea.classList.add('end');
@@ -150,8 +155,8 @@ const play = el => {
 }
 //Back Button
 const landing = el => {
+    nextTurn = 'player1';
     resetBoard();
-    turn = 'player1';
     scores.scoreTwo = scores.scoreOne = 0;
     renderScore();
     el.parentElement.parentElement.style.display = 'none'
