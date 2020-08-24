@@ -180,7 +180,7 @@ button:hover {
         font-size: 9vw;
     }
 
-    button {
+    button, #reset-score {
         border-radius: 3vw;
     }
 
