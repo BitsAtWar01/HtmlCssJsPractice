@@ -42,7 +42,7 @@ const makeAImove = () => {
 }
 //Player vs Player Button
 const play = el => {
-    el.parentElement.parentElement.style.display = 'none';
+    el.parentElement.style.display = 'none';
     const playareaContainer = document.querySelector('#playarea-container');
     playareaContainer.style.display = 'flex';   
     aiMode = false; 
@@ -50,11 +50,11 @@ const play = el => {
 
 //Player vs AI Button
 const playAI = el => {
-    el.parentElement.parentElement.style.display = 'none';
+    el.parentElement.style.display = 'none';
     const playareaContainer = document.querySelector('#playarea-container');
     playareaContainer.style.display = 'flex';   
     aiMode = true;
-    if(aiMode)document.querySelector('.names-banner .circle').innerText = 'Impossible AI';
+    if(aiMode)document.querySelector('.names-banner .circle').innerText = 'Imp AI';
 }
 
 //Back Button

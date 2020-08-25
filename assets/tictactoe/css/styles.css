@@ -168,6 +168,9 @@ button:hover {
     border-color: #fde3b7 ;
 }
 
+#landing-container button {
+    margin: 1vw 0;
+}
 
 @media only screen and (max-width: 600px) {
     .square {
@@ -188,6 +191,7 @@ button:hover {
     #landing-container, button {
         font-size: 8vw;
     }
+
     #playarea-container h1, #playarea-container h2{
         font-size: 9vw;
     }
