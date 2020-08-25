@@ -3,11 +3,14 @@ var player1 = 'X';
 var player2 = 'O';
 var turn = 'player1';
 var nextTurn = 'player1';
+var aiStartTurn = false;
 var isBoardFull = false;
 const winnerMessage = document.querySelector('#winner');
 const resetButton = document.querySelector('#reset');
 const playAreaContainer = document.querySelector('#playarea-container');
 const fullscreen = document.querySelectorAll('.fullscreen');
+var aiMode = false;
+
 var scores = {
     scoreOne: 0,
     scoreTwo: 0
@@ -15,9 +18,7 @@ var scores = {
 
 const scoreOneDisplay = document.querySelector('#player-1-score');
 const scoreTwoDisplay = document.querySelector('#player-2-score');
-
 const playArea = document.querySelector('.playarea');
-
 
 document.addEventListener('fullscreenchange', exitHandler);
 document.addEventListener('webkitfullscreenchange', exitHandler);
@@ -25,22 +26,49 @@ document.addEventListener('mozfullscreenchange', exitHandler);
 document.addEventListener('MSFullscreenChange', exitHandler);
 
 
-//Play Button
+//TicTacToe is attached to window object
+var aiBoard = new TicTacToe.TicTacToeBoard(['','','','','','','','','']);
+aiPlayer = new TicTacToe.TicTacToeAIPlayer();
+var aiTeam = aiBoard.oppositePlayer("X");
+
+const makeAImove = () => {
+    aiBoard = new TicTacToe.TicTacToeBoard(board);
+    aiPlayer.initialize(aiTeam, aiBoard);
+    var move = aiPlayer.makeMove();
+    if(move != null){
+        aiBoard.makeMove(aiTeam, move);
+        board = aiBoard.board.slice();
+    }
+}
+//Player vs Player Button
 const play = el => {
-    el.parentElement.style.display = 'none';
+    el.parentElement.parentElement.style.display = 'none';
     const playareaContainer = document.querySelector('#playarea-container');
-    playareaContainer.style.display = 'flex';    
+    playareaContainer.style.display = 'flex';   
+    aiMode = false; 
+}
+
+//Player vs AI Button
+const playAI = el => {
+    el.parentElement.parentElement.style.display = 'none';
+    const playareaContainer = document.querySelector('#playarea-container');
+    playareaContainer.style.display = 'flex';   
+    aiMode = true;
+    if(aiMode)document.querySelector('.names-banner .circle').innerText = 'Impossible AI';
 }
 
 //Back Button
 const landing = el => {
     nextTurn = 'player1';
+    turn = 'player1';
+    aiMode = false;
     resetBoard();
     scores.scoreTwo = scores.scoreOne = 0;
     renderScore();
-    el.parentElement.parentElement.style.display = 'none'
+    el.parentElement.parentElement.style.display = 'none';
     const landingContainer = document.querySelector('#landing-container');
     landingContainer.style.display = 'flex';
+    document.querySelector('.names-banner .circle').innerText = 'Player 2';
 }
 
 //Reset Board Button
@@ -49,13 +77,19 @@ const resetBoard = () => {
     winnerMessage.classList.remove('playerWin');
     winnerMessage.classList.remove('draw');
     winnerMessage.innerText = '';
-    resetButton.innerHTML = 'Reset Board';
-    turn = nextTurn;
+    if(!aiMode)turn = nextTurn;
     playArea.classList.remove('end');
     playArea.classList.remove('draw-bg');
+    if(aiMode){
+        if(turn == 'finish')aiStartTurn = !aiStartTurn;
+        if(aiStartTurn){
+            makeAImove();
+            turn = 'player1';
+        }else turn = 'player1';
+    }
+    resetButton.innerHTML = 'Reset Board';
     renderBoard();
 }
-
 
 //Maximize Button
 const maximize = () => {
@@ -151,7 +185,8 @@ const renderBoard = () => {
     if(turn == 'player2') {
         winnerMessage.classList.remove('cross');
         winnerMessage.classList.add('circle');
-        winnerMessage.innerText = 'Player 2\'s turn!';
+        if(aiMode)winnerMessage.innerText = 'AI\'s turn!';
+        else winnerMessage.innerText = 'Player 2\'s turn!';
     }
     checkBoardFull();
 }
@@ -161,12 +196,19 @@ renderBoard();
 //ADD MOVE
 const addMove = (num) => {
     if(board[num] == ''){
-        if(turn == 'player1'){
-            board[num] = player1;
-            turn = 'player2';
-        } else if(turn == 'player2'){
-            board[num] = player2;
-            turn = 'player1';
+        if(!aiMode){
+            if(turn == 'player1'){
+                board[num] = player1;
+                turn = 'player2';
+            } else if(turn == 'player2'){
+                board[num] = player2;
+                turn = 'player1';
+            }
+        } else {
+            if(turn == 'player1'){
+                board[num] = player1;
+                makeAImove();
+            }
         }
         renderBoard();
         checkWin();
@@ -218,7 +260,8 @@ const checkWin = () => {
         winnerMessage.classList.add('playerWin');
         if(turn != "finish")scores.scoreOne++;
     } else if(result == player2){
-        winnerMessage.innerText = 'Player 2 Wins!';
+        if(aiMode) winnerMessage.innerText = 'AI Wins!';
+        else winnerMessage.innerText = 'Player 2 Wins!';
         winnerMessage.classList.add('playerWin');
         if(turn != "finish") scores.scoreTwo++;
     }else if(isBoardFull){

@@ -12,7 +12,10 @@
     <div class="container" id="landing-container">
         <button class="fullscreen" onclick="maximize()">Maximize</button>
         <h1>Tic Tac Toe</h1>
-        <button onclick="play(this)">Play</button>
+        <div>
+            <button onclick="play(this)">Player vs Player</button>
+            <button onclick="playAI(this)">Player vs Impossible AI</button>
+        </div>
     </div>
 
 
@@ -47,7 +50,7 @@
         </div>
     </div>
 
-
+    <script src="/tictactoe/js/tictactoe.min.js"></script>
     <script src="/tictactoe/js/script.js"></script>
 </body>
 </html>
