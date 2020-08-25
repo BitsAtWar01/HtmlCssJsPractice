@@ -80,15 +80,24 @@ const resetBoard = () => {
     if(!aiMode)turn = nextTurn;
     playArea.classList.remove('end');
     playArea.classList.remove('draw-bg');
+    renderBoard();
     if(aiMode){
         if(turn == 'finish')aiStartTurn = !aiStartTurn;
         if(aiStartTurn){
-            makeAImove();
+            winnerMessage.innerText = "AI is thinking!";
+            winnerMessage.classList.add('circle');
             turn = 'player1';
-        }else turn = 'player1';
+            setTimeout(() =>{
+                makeAImove();
+                renderBoard();
+            }, 500)
+        }else {
+            winnerMessage.innerText = "Player 1\'s turn!";
+            winnerMessage.classList.add('cross');
+            turn = 'player1';
+        }
     }
     resetButton.innerHTML = 'Reset Board';
-    renderBoard();
 }
 
 //Maximize Button
